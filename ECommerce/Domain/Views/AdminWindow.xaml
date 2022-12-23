@@ -1,0 +1,149 @@
+﻿<Window x:Class="ECommerce.Domain.Views.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ECommerce.Domain.Views" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="AdminWindow" Height="700" Width="1050">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"></RowDefinition>
+            <RowDefinition Height="25*"></RowDefinition>
+            <RowDefinition Height="15*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <ListView ItemsSource="{Binding AllProducts2}" SelectedItem="{Binding SelectedProduct}"
+                Padding="10" Background="White" BorderBrush="Orange" BorderThickness="5,0,5,5">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectProductCommand}" ></i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="18" HorizontalAlignment="Center" Padding="5,2" Text="{Binding Name}" ></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Price" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="18" HorizontalAlignment="Center" Padding="5,2" Text="{Binding Price}" ></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Discount" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock FontSize="18" Text="{Binding Discount}" ></TextBlock>
+                                        <TextBlock FontSize="18" Text="%" ></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <Button Width="200" 
+                        Command="{Binding TotalOrderPriceCommand}"
+                        Height="30"
+                        Margin="325,-50,0,0"
+                        Background="DarkOrange"
+                        Foreground="White"
+                        Content="Total Price Of Products"
+                        FontSize="18">
+                </Button>
+                <Button Width="200" 
+                        Command="{Binding AddProductCommand}"
+                        Height="30"
+                        Margin="-200,25,0,0"
+                        Background="DarkOrange"
+                        Foreground="White"
+                        Content="Add Product"
+                        FontSize="18">
+                </Button>
+           <Button Width="200" 
+                        Height="30"
+                   Command="{Binding UpdateCommand}"
+                        Margin="-200,100,0,0"
+                        Background="DarkOrange"
+                        Foreground="White"
+                        Content="Update Product"
+                        FontSize="18">
+                </Button>
+            </StackPanel>
+        </Grid>
+        
+
+        <Grid Grid.Row="0">
+            <StackPanel>
+                <ListView ItemsSource="{Binding AllProducts}" SelectedItem="{Binding SelectedProduct}"
+                Padding="10" Background="White" BorderBrush="Orange" BorderThickness="5,0,5,5">
+                    <!--<i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectProductCommand}" ></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>-->
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Date" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontSize="18" HorizontalAlignment="Center" Padding="5,2" Text="{Binding Date}" ></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Amount" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontSize="18" HorizontalAlignment="Center" Padding="5,2" Text="{Binding Amount}" ></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="ProductName" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock FontSize="18" Text="{Binding Product.Name}" ></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Customer" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock FontSize="18" Text="{Binding Customer.Username}" ></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Price" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock FontSize="18" Text="{Binding Product.Price}" ></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+</Window>
